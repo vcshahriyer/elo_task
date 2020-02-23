@@ -47,5 +47,14 @@ module.exports = {
       .catch(err => {
         res.json({ success: false, result: err });
       });
+  },
+  get: (req, res) => {
+    // const recipe = mongoose.model('recipe', new Schema({ name: String }));
+    RecipeModel.findOne({ name: req.body.name })
+      .populate("Recipes._id")
+      .exec(function(err, recipe) {
+        if (err) return res.json({ success: false, result: err });
+        res.json({ success: true, result: recipe });
+      });
   }
 };

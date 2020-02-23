@@ -7,14 +7,14 @@ const RecipeSchema = new Schema({
   image: String,
   Ingredients: [
     {
-      _id: { type: Schema.Types.ObjectId, ref: "ingredient" },
+      _id: { type: String, ref: "ingredient" },
       usedQuantity: Number
     }
   ],
 
   Recipes: [
     {
-      _id: { type: Schema.Types.ObjectId, ref: "recipe" },
+      _id: { type: String, ref: "recipe" },
       usedQuantity: Number
     }
   ],

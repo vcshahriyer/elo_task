@@ -21,6 +21,7 @@ const RecipeController = require("./controllers/RecipeController");
 app.post("/api/ingredient/add", IngredientController.create);
 app.post("/api/recipe/add", RecipeController.create);
 app.post("/api/recipe/update", RecipeController.update);
+app.post("/api/get-recipe", RecipeController.get);
 
 // Start Server
 const port = process.env.PORT || 3000;
