@@ -51,7 +51,8 @@ module.exports = {
   get: (req, res) => {
     // const recipe = mongoose.model('recipe', new Schema({ name: String }));
     RecipeModel.findOne({ name: req.body.name })
-      .populate("Recipes._id")
+      .populate({ path: "Recipes._id", populate: { path: "Recipes._id" } })
+      .populate("Ingredients._id")
       .exec(function(err, recipe) {
         if (err) return res.json({ success: false, result: err });
         res.json({ success: true, result: recipe });
