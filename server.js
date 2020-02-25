@@ -27,6 +27,8 @@ app.get("/api/get-recipes", RecipeController.getrecipes);
 app.get("/api/get-recipe/:id", RecipeController.get);
 app.get("/api/get-ingredients", IngredientController.getingredients);
 app.get("/api/get-ingredient/:id", IngredientController.getingredient);
+app.get("/api/get-ingredient-cost/:id", RecipeController.getRecipeCost);
+app.delete("/api/delete-recipe/:id", RecipeController.delete);
 
 // Start Server
 const port = process.env.PORT || 3000;

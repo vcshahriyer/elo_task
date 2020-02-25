@@ -60,5 +60,42 @@ module.exports = {
         if (err) return res.json({ success: false, result: err });
         res.json({ success: true, result: recipe });
       });
+  },
+  getRecipeCost: (req, res) => {
+    RecipeModel.find(
+      { _id: req.params.id },
+      { restockHistory: { $slice: -1 } }
+    ).exec(function(err, recipe) {
+      if (err) return res.json({ success: false, result: err });
+      res.json({ success: true, result: recipe });
+    });
+  },
+  delete2: (req, res) => {
+    RecipeModel.findById({ _id: req.params.id }, (err, recipe) => {
+      IngredientModel.remove(
+        { _id: { $in: recipe.Ingredients } },
+        (err, resp) => {
+          if (err) return resp.json({ success: false, result: err });
+          recipe.remove();
+          res.json({ success: true, result: "success !" });
+        }
+      );
+    });
+  },
+  delete: (req, res) => {
+    RecipeModel.findById({ _id: req.params.id }, (err, recipe) => {
+      RecipeModel.update(
+        { Recipes: { $elemMatch: { _id: recipe._id } } },
+        { $pull: { Recipes: { _id: recipe._id } } }
+      )
+        .then(recipe => {
+          if (!recipe)
+            res.json({ success: false, result: "No recipe found !" });
+          res.json({ success: true, result: recipe });
+        })
+        .catch(err => {
+          res.json({ success: false, result: err });
+        });
+    });
   }
 };

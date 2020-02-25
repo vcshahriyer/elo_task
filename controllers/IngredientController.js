@@ -1,4 +1,5 @@
 const IngredientModel = require("../models/ingredientModel");
+const RecipeModel = require("../models/recipeModel");
 const mongoose = require("mongoose");
 
 module.exports = {
