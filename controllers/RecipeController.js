@@ -25,7 +25,8 @@ module.exports = {
   update: (req, res) => {
     RecipeModel.update({ _id: req.body._id }, req.body)
       .then(recipe => {
-        if (!recipe) res.json({ success: false, result: "No recipe found !" });
+        if (!recipe | (recipe.n === 0))
+          res.json({ success: false, result: "No recipe found !" });
         res.json({ success: true, result: recipe });
       })
       .catch(err => {

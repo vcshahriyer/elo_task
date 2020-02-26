@@ -23,11 +23,12 @@ app.post("/api/recipe/add", RecipeController.create);
 app.post("/api/recipe/update", RecipeController.update);
 app.post("/api/ingredient/update", IngredientController.update);
 app.post("/api/recipe/push-restock", RecipeController.restock);
+app.post("/api/ingredient/push-restock", IngredientController.restock);
 app.get("/api/get-recipes", RecipeController.getrecipes);
 app.get("/api/get-recipe/:id", RecipeController.get);
 app.get("/api/get-ingredients", IngredientController.getingredients);
 app.get("/api/get-ingredient/:id", IngredientController.getingredient);
-app.get("/api/get-ingredient-cost/:id", RecipeController.getRecipeCost);
+app.get("/api/get-recipes-cost/:id", RecipeController.getRecipeCost);
 app.delete("/api/delete-recipe/:id", RecipeController.delete);
 app.delete("/api/delete-ingredient/:id", IngredientController.delete);
 

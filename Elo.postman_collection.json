@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "d9512c99-4f7d-43d4-8d75-bbe7f9ea47c3",
+		"name": "Elo",
+		"description": "Node Mongoose Elo task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add an Ingredient",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Onion\",\n\t\"restockHistory\": [{\n\t\t\"quantity\": 1000,\n\t\t\"unitCost\": 180\n\t}],\n\t\"image\": \"image.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"add"
+					]
+				},
+				"description": "Add an Ingredient:\n\n{\n\t\"name\": \"Onion\",\n\t\"restockHistory\": [{\n\t\t\"quantity\": 1000,\n\t\t\"unitCost\": 180\n\t}],\n\t\"image\": \"image.jpg\"\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Chicken Curry\",\n\t\"image\": \"image.jpg\",\n\t\"Ingredients\": [{\n\t\t\"_id\": \"5e42c00df0fd0136ccc38d37\",\n\t\t\"usedQuantity\": 13\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"add"
+					]
+				},
+				"description": "Add a Recipe:\n\n{\n\t\"name\": \"Chicken Curry\",\n\t\"image\": \"image.jpg\",\n\t\"Ingredients\": [{\n\t\t\"_id\": \"5e42c00df0fd0136ccc38d37\",\n\t\t\"usedQuantity\": 13\n\t}]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Add an ingredient inside a Recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5e56735118c0d40bb0fdc380\",\n\t\"Ingredients\": [{\n\t\t\"_id\": \"5e5672a318c0d40bb0fdc37e\",\n\t\t\"usedQuantity\": 1\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"update"
+					]
+				},
+				"description": "Add an ingredient inside a Recipe:\n\n{\n\t\"_id\": \"5e56735118c0d40bb0fdc380\",\n\t\"Ingredients\": [{\n\t\t\"_id\": \"5e5672a318c0d40bb0fdc37e\",\n\t\t\"usedQuantity\": 1\n\t}]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Add a recipe inside a Recipe .",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5e5673ce18c0d40bb0fdc382\",\n\t\"Recipes\": [{\n\t\t\"_id\": \"5e56735118c0d40bb0fdc380\",\n\t\t\"usedQuantity\": 1\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"update"
+					]
+				},
+				"description": "Add a recipe inside a Recipe:\n\n\n\n{\n\t\"_id\": \"5e5673ce18c0d40bb0fdc382\",\n\t\"Recipes\": [{\n\t\t\"_id\": \"5e56735118c0d40bb0fdc380\",\n\t\t\"usedQuantity\": 1\n\t}]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Push a new restock to an Ingredient.",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5e56724818c0d40bb0fdc37c\",\n\t\"restockHistory\": [{\n\t\t\"quantity\": 1000,\n\t\t\"unitCost\": 200\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/ingredient/push-restock",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ingredient",
+						"push-restock"
+					]
+				},
+				"description": "Push a new restock to an Ingredient:\n\n{\n\t\"_id\": \"5e56724818c0d40bb0fdc37c\",\n\t\"restockHistory\": [{\n\t\t\"quantity\": 1000,\n\t\t\"unitCost\": 200\n\t}]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Push a new restock to a Recipe which has an Ingredient and a Recipe ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5e5673ce18c0d40bb0fdc382\",\n\t\"restockHistory\": [\n\t\t{\n\t\t\t\"quantity\": 1,\n\t\t\t\"unitCost\": 220\n\t\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/recipe/push-restock",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipe",
+						"push-restock"
+					]
+				},
+				"description": "Push a new restock to a Recipe which has an Ingredient and a Recipe:\n\n{\n\t\"_id\": \"5e42dd930eefd93c3476993a\",\n\t\"restockHistory\": [\n\t\t{\n\t\t\t\"quantity\": 5,\n\t\t\t\"unitCost\": 120\n\t\t}]\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ingredients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/get-ingredients",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get-ingredients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/get-recipes",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get-recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get values inside a single ingredient",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/get-ingredient/5e56724818c0d40bb0fdc37c",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get-ingredient",
+						"5e56724818c0d40bb0fdc37c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get values inside a single recipe. (Data of sub items like Ingredients and Recipes must be extracted/populated)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/get-recipe/5e5673ce18c0d40bb0fdc382",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get-recipe",
+						"5e5673ce18c0d40bb0fdc382"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get recipe cost. * (Consider the latest restock push to be the latest cost of Ingredient)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/get-recipes-cost/5e5673ce18c0d40bb0fdc382",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"get-recipes-cost",
+						"5e5673ce18c0d40bb0fdc382"
+					]
+				},
+				"description": "Get recipe cost. * (Consider the latest restock push to be the latest cost of Ingredient)"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete An Ingredient.  * (Consider dependency)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/delete-ingredient/5e5672a318c0d40bb0fdc37e",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"delete-ingredient",
+						"5e5672a318c0d40bb0fdc37e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Recipe.  * (Consider dependency)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/delete-recipe/5e56735118c0d40bb0fdc380",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"delete-recipe",
+						"5e56735118c0d40bb0fdc380"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:3000//api/ingredient/update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5e42c00df0fd0136ccc38d37\",\n\t\"restockHistory\": [\n\t\t{\n\t\t\t\"quantity\": 5,\n\t\t\t\"unitCost\": 120\n\t\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000//api/ingredient/update",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"",
+						"api",
+						"ingredient",
+						"update"
+					]
+				},
+				"description": "{\n\t\"_id\": \"5e42c00df0fd0136ccc38d37\",\n\t\"restockHistory\": [\n\t\t{\n\t\t\t\"quantity\": 5,\n\t\t\t\"unitCost\": 120\n\t\t}]\n}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "74a51565-584f-4091-9c82-1ae63b8f0a4f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c331fbac-63f7-46fa-b7a9-a0de233faa45",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

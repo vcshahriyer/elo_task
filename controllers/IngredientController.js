@@ -34,6 +34,20 @@ module.exports = {
         res.json({ success: false, result: err });
       });
   },
+  restock: (req, res) => {
+    IngredientModel.update(
+      { _id: req.body._id },
+      { $push: { restockHistory: req.body.restockHistory } }
+    )
+      .then(resp => {
+        if (!resp | (resp.n === 0))
+          res.json({ success: false, result: "No recipe found !" });
+        res.json({ success: true, result: resp });
+      })
+      .catch(err => {
+        res.json({ success: false, result: err });
+      });
+  },
   getingredients: (req, res) => {
     IngredientModel.find().exec(function(err, ingredient) {
       if (err) return res.json({ success: false, result: err });
@@ -52,8 +66,8 @@ module.exports = {
   delete: (req, res) => {
     IngredientModel.findById({ _id: req.params.id }, (err, ingredient) => {
       RecipeModel.update(
-        { Ingredients: { $elemMatch: { _id: ingredient.id } } }, // matching ingredient _id to all other recipe which has that ingredient as dependency.
-        { $pull: { Ingredients: { _id: ingredient.id } } } // deletingn the ref dependency of deleted ingredient
+        { Ingredients: { $elemMatch: { _id: ingredient._id } } }, // matching ingredient _id to all other recipe which has that ingredient as dependency.
+        { $pull: { Ingredients: { _id: ingredient._id } } } // deletingn the ref dependency of deleted ingredient
       )
         .then(resp => {
           if (!resp)
