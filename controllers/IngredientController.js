@@ -48,5 +48,22 @@ module.exports = {
       if (err) return res.json({ success: false, result: err });
       res.json({ success: true, result: ingredient });
     });
+  },
+  delete: (req, res) => {
+    IngredientModel.findById({ _id: req.params.id }, (err, ingredient) => {
+      RecipeModel.update(
+        { Ingredients: { $elemMatch: { _id: ingredient.id } } }, // matching ingredient _id to all other recipe which has that ingredient as dependency.
+        { $pull: { Ingredients: { _id: ingredient.id } } } // deletingn the ref dependency of deleted ingredient
+      )
+        .then(resp => {
+          if (!resp)
+            res.json({ success: false, result: "No Ingredient found !" });
+          ingredient.remove();
+          res.json({ success: true, result: "Delete successful !" });
+        })
+        .catch(err => {
+          res.json({ success: false, result: err });
+        });
+    });
   }
 };

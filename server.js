@@ -29,7 +29,8 @@ app.get("/api/get-ingredients", IngredientController.getingredients);
 app.get("/api/get-ingredient/:id", IngredientController.getingredient);
 app.get("/api/get-ingredient-cost/:id", RecipeController.getRecipeCost);
 app.delete("/api/delete-recipe/:id", RecipeController.delete);
+app.delete("/api/delete-ingredient/:id", IngredientController.delete);
 
 // Start Server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // checking for dynamic port set.
 app.listen(port, () => console.log(`Listening on port ${port}....`));

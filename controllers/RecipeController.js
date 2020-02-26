@@ -52,7 +52,6 @@ module.exports = {
     });
   },
   get: (req, res) => {
-    // const recipe = mongoose.model('recipe', new Schema({ name: String }));
     RecipeModel.findOne({ _id: req.params.id })
       .populate({ path: "Recipes._id", populate: { path: "Recipes._id" } })
       .populate("Ingredients._id")
@@ -70,28 +69,16 @@ module.exports = {
       res.json({ success: true, result: recipe });
     });
   },
-  delete2: (req, res) => {
-    RecipeModel.findById({ _id: req.params.id }, (err, recipe) => {
-      IngredientModel.remove(
-        { _id: { $in: recipe.Ingredients } },
-        (err, resp) => {
-          if (err) return resp.json({ success: false, result: err });
-          recipe.remove();
-          res.json({ success: true, result: "success !" });
-        }
-      );
-    });
-  },
   delete: (req, res) => {
     RecipeModel.findById({ _id: req.params.id }, (err, recipe) => {
       RecipeModel.update(
-        { Recipes: { $elemMatch: { _id: recipe._id } } },
-        { $pull: { Recipes: { _id: recipe._id } } }
+        { Recipes: { $elemMatch: { _id: recipe._id } } }, // matching recipe _id to all other recipe which has that recipe as dependency.
+        { $pull: { Recipes: { _id: recipe._id } } } // deletingn the ref dependency of deleted recipe
       )
-        .then(recipe => {
-          if (!recipe)
-            res.json({ success: false, result: "No recipe found !" });
-          res.json({ success: true, result: recipe });
+        .then(resp => {
+          if (!resp) res.json({ success: false, result: "No recipe found !" });
+          recipe.remove();
+          res.json({ success: true, result: "Delete successful !" });
         })
         .catch(err => {
           res.json({ success: false, result: err });
