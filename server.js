@@ -1,7 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const multer = require("multer");
 
+// image file storage path and unique name+extension config
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, "./uploads/");
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage }); // multipart form data library multer with config
 //Database connection
 mongoose
   .connect("mongodb://127.0.0.1:27017/elo", { useNewUrlParser: true })
@@ -18,8 +30,12 @@ const IngredientController = require("./controllers/IngredientController");
 const RecipeController = require("./controllers/RecipeController");
 
 // Routes
-app.post("/api/ingredient/add", IngredientController.create);
-app.post("/api/recipe/add", RecipeController.create);
+app.post(
+  "/api/ingredient/add",
+  upload.single("image"),
+  IngredientController.create
+);
+app.post("/api/recipe/add", upload.single("image"), RecipeController.create);
 app.post("/api/recipe/update", RecipeController.update);
 app.post("/api/ingredient/update", IngredientController.update);
 app.post("/api/recipe/push-restock", RecipeController.restock);

@@ -7,10 +7,25 @@ module.exports = {
     let recipe = new RecipeModel({
       _id: new mongoose.Types.ObjectId().toHexString(),
       name: req.body.name,
-      image: req.body.image,
-      Ingredients: req.body.Ingredients,
-      Recipes: req.body.Recipes,
-      restockHistory: req.body.restockHistory
+      image: req.file.path,
+      Ingredients: [
+        {
+          _id: req.body.ingredientId,
+          usedQuantity: req.body.IngUsedQuantity
+        }
+      ],
+      Recipes: [
+        {
+          _id: req.body.recipeId,
+          usedQuantity: req.body.ResUsedQuantity
+        }
+      ],
+      restockHistory: [
+        {
+          quantity: req.body.quantity,
+          unitCost: req.body.unitCost
+        }
+      ]
     });
 
     recipe

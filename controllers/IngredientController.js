@@ -7,8 +7,13 @@ module.exports = {
     let ingredient = new IngredientModel({
       _id: new mongoose.Types.ObjectId().toHexString(),
       name: req.body.name,
-      restockHistory: req.body.restockHistory,
-      image: req.body.image
+      restockHistory: [
+        {
+          quantity: req.body.quantity,
+          unitCost: req.body.unitCost
+        }
+      ],
+      image: req.file.path
     });
 
     ingredient
