@@ -64,6 +64,7 @@ module.exports = {
     });
   },
   delete: (req, res) => {
+    // Delete ingredient implementing cascadeing to delete dependency
     IngredientModel.findById({ _id: req.params.id }, (err, ingredient) => {
       RecipeModel.update(
         { Ingredients: { $elemMatch: { _id: ingredient._id } } }, // matching ingredient _id to all other recipe which has that ingredient as dependency.

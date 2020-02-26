@@ -64,13 +64,15 @@ module.exports = {
   getRecipeCost: (req, res) => {
     RecipeModel.find(
       { _id: req.params.id },
-      { restockHistory: { $slice: -1 } }
+      { restockHistory: { $slice: -1 } } // Getting the last element form restockHistory array
     ).exec(function(err, recipe) {
       if (err) return res.json({ success: false, result: err });
       res.json({ success: true, result: recipe });
     });
   },
   delete: (req, res) => {
+    // Delete Recipe implementing cascadeing to delete dependency
+
     RecipeModel.findById({ _id: req.params.id }, (err, recipe) => {
       RecipeModel.update(
         { Recipes: { $elemMatch: { _id: recipe._id } } }, // matching recipe _id to all other recipe which has that recipe as dependency.
