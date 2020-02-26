@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d9512c99-4f7d-43d4-8d75-bbe7f9ea47c3",
-		"name": "Elo",
+		"_postman_id": "6c4cb217-27ec-4675-9a2a-8cc48b0be8b1",
+		"name": "Elo copy",
 		"description": "Node Mongoose Elo task",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,12 +15,34 @@
 						"key": "Content-Type",
 						"name": "Content-Type",
 						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Onion\",\n\t\"restockHistory\": [{\n\t\t\"quantity\": 1000,\n\t\t\"unitCost\": 180\n\t}],\n\t\"image\": \"image.jpg\"\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "quantity",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "unitCost",
+							"value": "180",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Onion",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Shahriyer/Downloads/images.jpg"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,8 +83,49 @@
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Chicken Curry\",\n\t\"image\": \"image.jpg\",\n\t\"Ingredients\": [{\n\t\t\"_id\": \"5e42c00df0fd0136ccc38d37\",\n\t\t\"usedQuantity\": 13\n\t}]\n}",
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Chicken Tikka2",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Shahriyer/Downloads/images.jpg"
+						},
+						{
+							"key": "ingredientId",
+							"value": "5e56724818c0d40bb0fdc37c",
+							"type": "text"
+						},
+						{
+							"key": "IngUsedQuantity",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "recipeId",
+							"value": "5e5673ce18c0d40bb0fdc382",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "unitCost",
+							"value": "120",
+							"type": "text"
+						},
+						{
+							"key": "ResUsedQuantity",
+							"value": "1",
+							"type": "text"
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -429,13 +492,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000//api/ingredient/update",
+					"raw": "localhost:3000/api/ingredient/update",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"",
 						"api",
 						"ingredient",
 						"update"
